@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "99|18|108|0|\n",
-    "hash" : "839155304",
+    "hash" : "0",
     "id" : "7734E134",
     "lastKnownWriteTime" : 1584522059,
     "last_content_update" : 1584522059143,
@@ -14,9 +14,9 @@
     "properties" : {
         "cursorPosition" : "97,0",
         "docOutlineSize" : "46.64862207860047",
-        "docOutlineVisible" : "1",
-        "last_setup_crc32" : "F680A67Dbb338d19",
-        "scrollLine" : "56",
+        "docOutlineVisible" : "0",
+        "last_setup_crc32" : "",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
