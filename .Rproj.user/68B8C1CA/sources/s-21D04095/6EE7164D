@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "6|27|8|0|\n10|6|16|0|\n18|6|23|0|\n25|6|34|0|\n36|6|41|0|\n131|6|134|0|\n",
-    "hash" : "136099999",
+    "hash" : "0",
     "id" : "6EE7164D",
     "lastKnownWriteTime" : 1585752387,
     "last_content_update" : 1585752387748,
@@ -13,8 +13,8 @@
     "project_path" : "week5.Rmd",
     "properties" : {
         "cursorPosition" : "111,3",
-        "last_setup_crc32" : "59D2EFA5bb338d19",
-        "scrollLine" : "96",
+        "last_setup_crc32" : "",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
