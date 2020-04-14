@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586879435235.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5F52869",
+    "lastKnownWriteTime" : 1586875358,
+    "last_content_update" : 1586879435235,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "438299c7249549598db506a3c1c0130a",
+        "name" : "course",
+        "title" : "course"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

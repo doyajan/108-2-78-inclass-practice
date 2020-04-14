@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "4184141952",
     "id" : "4B639C0E",
     "lastKnownWriteTime" : 1586709649,
     "last_content_update" : 1586709649,
@@ -13,12 +13,12 @@
     "project_path" : "week6.Rmd",
     "properties" : {
         "cursorPosition" : "163,5",
-        "scrollLine" : "157"
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 5,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
