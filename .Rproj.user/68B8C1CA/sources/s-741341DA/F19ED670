@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1587548729632.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F19ED670",
+    "lastKnownWriteTime" : 2136474530936,
+    "last_content_update" : 1587548729632,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "f40e87b7e3e7409dbef4729f4a624787",
+        "name" : "poem_new",
+        "title" : "poem_new"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

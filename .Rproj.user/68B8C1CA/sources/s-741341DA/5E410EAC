@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1587545077140.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5E410EAC",
+    "lastKnownWriteTime" : 2448657270184,
+    "last_content_update" : 1587545077140,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "8b9fc758aadc4dba9fbbb26dc9768c66",
+        "name" : "post",
+        "title" : "post"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}
