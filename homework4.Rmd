@@ -4,6 +4,8 @@ output: html_document
 params:
   studentName: "詹朵亞"
   studentID: "310651008"
+editor_options: 
+  chunk_output_type: console
 ---
 
 # 注意事項
@@ -32,10 +34,13 @@ library(jsonlite); library(lubridate); library(readr); library(stringr);
 小明想自twoNames中取出段兄及段兄弟兩個稱號，執行完以下結果他得到兩個「段兄」，第二個段兄應該要有弟：
 ```{r data1}
 twoNames <- "有人叫他段兄，但也有有人叫他段兄弟，最常...."
-str_extract_all(twoNames, "段(兄|兄弟)")
+str_extract_all(twoNames, "段+兄弟|段+兄")
+str_view_all(twoNames, "段+兄弟|段+兄")
+class(twoNames)
 ```
 請在小明的target regex後面加上「後面鄰居不能有弟」的regex描述並存在back_regex (class character) 裡. (hint: 查cheat sheet look around)
 ```{r ans1}
+
 # back_regex
 ```
 若你的答案正確，執行以下程式會得到一個段兄，一個段兄弟。
@@ -55,13 +60,15 @@ str(semiGodsSemiDevils)
 取出回數為"P2"的內文存在context_picked (class character). 
 ```{r ans21}
 context_picked <- semiGodsSemiDevils$data[[1]]$text[[3]]
-# context_picked
+ context_picked
 ```
 
 ### 2.2
 context_picked把內文存在一個字串元素裡（很大的一串字串）。每段其實有「兩個空格」區隔如下所示：
 ```{r}
 context_picked_split <- str_split(context_picked,"\\s\\s")
+context_picked_split <- as.list(context_picked_split)
+class(context_picked_split)
 str(context_picked_split)
 ```
 `str_split(string, pattern)`可以將文字string依pattern找到的字組切割，切割後會形成一個list。請依「兩個空格」來切割context_picked並存在context_picked_split (class list)。（註：regex的一個空格是"\\s"）
@@ -74,6 +81,7 @@ List of 1
 
 ```{r ans22}
 context_picked_split <- str_split(context_picked,"\\s\\s")
+class(context_picked_split)
 str(context_picked_split)
  context_picked_split
 ```
@@ -82,15 +90,24 @@ str(context_picked_split)
 段譽在內文被以"段譽、段兄、段兄弟、段大哥、段相公、段君，及姓段的小子"稱呼過，請使用`str_extract_all()`粹取出context_picked_split底下各段中段譽被提到的所有稱呼, 並存在mention_duan （class list, of 214 elements）裡。（小心context_picked_split要進下一層才會是各段的字串向量）
 
 可能有用的提示: 出現0或1次的複製次數是用?號接在文字的後面。
-
+ 
 ```{r ans23}
-# mention_duan
+str(context_picked_split)
+context_picked_unlist <- unlist(context_picked_split)
+str(context_picked_unlist)
+class(context_picked_unlist)
+mention_duan <- str_extract_all(context_picked_unlist,"段譽|段兄弟|段兄|段大哥|段相公|段君|姓段的小子")
+str_count(mention_duan)
+class(mention_duan)
+ mention_duan
 ```
 
 ### 2.4
 使用`unlist()`函數將mention_duan轉成字串後用`table()`函數統計段譽各稱號被提到的次數，並將table結果存在table_duan (class table)。
 ```{r ans24}
-# table_duan
+mention_duan_unlist <- unlist(mention_duan)
+table_duan <- table(mention_duan_unlist)
+ table_duan
 ```
 
 
