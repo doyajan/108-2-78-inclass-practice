@@ -1,0 +1,172 @@
+---
+title: "week14"
+author: "doya"
+date: "2020/6/6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+demand_return <- 
+  function(p){
+    q_d <- 10-5*p
+    return(q_d)
+  }
+# 印在螢幕，但Global Environment並不會有q_d
+demand_return(1.2)
+```
+
+
+```{r}
+supply <- # 創造一個物件叫supply
+  function(p){ 
+    q_s=0+2*p
+    return(q_s)
+    } 
+
+```
+
+```{r}
+jsonlite::fromJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=JSON") ->
+  weather_next36hours
+
+dateInput <- today()
+locationInput <- "新北市"
+```
+
+```{r}
+# 找出符合地點的天氣資訊：weatherAtLocation
+(weather_next36hours$cwbopendata$dataset$location$locationName == locationInput) -> pick_location # 可挑出locationInput的「要/不要」向量 22個城市中的locationInput新北市
+
+weather_next36hours$cwbopendata$dataset$location$weatherElement[pick_location][[1]] -> weatherAtLocation
+
+# 在weatherAtLocation找出符合時間的天氣資訊 從weatherElement看溫度各指標 [[1]]是?
+
+weatherAtLocation
+(weatherAtLocation$elementName=="MaxT") ->
+  pick_MaxT
+(weatherAtLocation$elementName=="MinT") ->
+  pick_MinT
+weatherAtLocation$time[pick_MaxT][[1]]$parameter$parameterName[[1]] -> maxT #前面[[1]]是第一個時間點；後面[[1]]是天氣敘述第一個「陰天」
+weatherAtLocation$time[pick_MinT][[1]]$parameter$parameterName[[1]] -> minT
+glue::glue("{locationInput} {dateInput} 氣溫，最高{maxT}度，最低{minT}度。")
+```
+
+```{r}
+askSilly_weather <- function(locationInput){
+  jsonlite::fromJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=JSON") ->
+  weather_next36hours
+  
+  (weather_next36hours$cwbopendata$dataset$location$locationName == locationInput) -> pick_location
+  
+  weather_next36hours$cwbopendata$dataset$location$weatherElement[pick_location][[1]] -> weatherAtLocation
+  (weatherAtLocation$elementName=="MaxT") ->
+    pick_MaxT
+  (weatherAtLocation$elementName=="MinT") ->
+    pick_MinT
+  weatherAtLocation$time[pick_MaxT][[1]]$parameter$parameterName[[1]] -> maxT
+  weatherAtLocation$time[pick_MinT][[1]]$parameter$parameterName[[1]] -> minT
+  
+  glue::glue("{locationInput} 氣溫，最高{maxT}度，最低{minT}度。")
+}
+```
+```{r}
+askSilly_weather("高雄市")
+```
+
+```{r}
+what_time_it_is<-function(timezone){
+  library(lubridate)
+  tztime <- with_tz(now(),tz=timezone)
+  return(tztime)}
+
+what_time_it_is("Europe/Paris")
+```
+
+```{r}
+class(demand_return)
+# 查詢函數formals arguments要求
+formals(askSilly_weather)
+# 查詢函數主體
+body(askSilly_weather)
+```
+
+```{r}
+learning_topics <- 
+  list(
+    subject="函數",
+    date=lubridate::ymd("2020-06-03"),
+    functionsCreated=list(
+      demand=demand_return # 等號右邊是呼叫demand_return的定義值，也就是function(...){...}值定義本身。
+    )
+  )
+learning_topics$functionsCreated$demand(1.2)
+```
+
+
+```{r}
+typeof(demand_return)
+# 查詢函數執行所要求環境
+environment(demand_return)
+# 若函數執行需要Global environment已存在某些物件，查詢需要哪些物件
+codetools::findGlobals(demand_return)
+```
+
+```{r}
+intercept <- 10
+slope <- -5
+myDemand <- function(p){
+  q_d <- intercept + slope*p
+  return(q_d)
+}
+
+myDemand2 <- function(p, intercept=10, slope=-5){
+  q_d <- intercept + slope*p
+  return(q_d)
+}
+```
+
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/07F7CCB3-ED00-43C4-966D-08E9DAB24E95/json/preview") -> busArrivalForecast # 公車預估到站時間 https://data.ntpc.gov.tw/datasets/07F7CCB3-ED00-43C4-966D-08E9DAB24E95
+
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127/json/preview") -> busRoutes # 公車路線清單 https://data.ntpc.gov.tw/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127
+
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/34B402A8-53D9-483D-9406-24A682C2D6DC/json/preview") -> busStopsInfo # 公車站位資訊 https://data.ntpc.gov.tw/datasets/34B402A8-53D9-483D-9406-24A682C2D6DC
+```
+
+```{r}
+when_busArrives <- function(busname,busstop){
+  pick_busstop <- busStopsInfo$nameZh == busstop
+  pick_busname <- busRoutes$nameZh == busname
+  stopid <-busStopsInfo$Id[pick_busstop]
+  routeid <- busRoutes$Id[pick_busname]
+  pick_routeid <- busArrivalForecast$RouteID == routeid
+bustime <- k
+  busArrivalForecast$EstimateTime[[pick_routeid]]
+return(bustime)
+glue::glue("{busname}還有{bustime}分鐘進站{busstop} ")
+}
+when_busArrives("916","台北大學正門")
+ busname <- "889"
+ busstop <- "捷運亞東醫院站"
+```,
+    busArrivalForecast$StopID == stopid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
