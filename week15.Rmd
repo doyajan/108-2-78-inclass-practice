@@ -1,0 +1,12 @@
+---
+title: "week15"
+author: "doya"
+date: "2020/6/17"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
